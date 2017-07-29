@@ -1,3 +1,0 @@
-# UNiversity
-school study  
-				
