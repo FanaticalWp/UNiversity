@@ -1,0 +1,60 @@
+enum status
+{
+kValid = 0,
+kInvalid
+};              //枚举出状态量，来处理 NUll 和 不同于NUll譬如（输入加号，减号，‘0’）的一些情况
+int g_nStatus = kValid;  
+// 全局变量 初始化设置为合法性的
+int StrToInt (const char *str)
+{
+g_nStatus = kInvalid;              //先设置为非法
+long long num = 0;
+if (str != NULL && *str != '\0')
+{
+bool minus = false;
+if (*str == '+')
+{
+str++;
+}
+else  if (*str == '-')
+{
+minus = true;
+str++;
+}
+if (*str != '\0')
+{
+num = StrToIntScore (str,minus)
+}
+}
+return (int ) num;  // 如果没有进入判断条件，此时返回的就是非法的状态量g_nStatus
+}
+ long long StrToIntScore (const char *digit, bool minus) 
+
+{
+long long num  =  0;        //重新初始化 ，不在一个作用域
+while (*digit != '\0')
+{
+if (*digit >= '0' && *digit <= '9')
+{
+int flag = minus ? -1:1;
+num = num *10 +flag*(*digit - '0');    
+if ((!minus && num > 0x7FFFFFFF)
+    || (minus && (signed int )num < 0x80000000) )
+{
+num = 0;
+break;
+//数字溢出 蹦出去 此时num = 0;
+}
+digit++;
+}
+else 
+{
+num = 0;
+break;            // 不是 0到9 之间的字符  
+}
+}
+if (*digit == '\0')
+{
+g_nStatus = kValid;                     //空字符串被认为是合法 g_nStatus 为合法的。
+}
+}
