@@ -1,0 +1,19 @@
+class Replacement
+{
+public:
+  string replaceSpace(string iniString, int length)
+  {
+    int i = 0;
+    string res;
+    for (i=0; i<iniString.size();i++)
+    {
+      if (issspace(iniString[i]))
+      {
+        res += "%20";
+         continue;
+      }
+      res += iniString[i]; 
+    }
+    return res;
+  }
+};
