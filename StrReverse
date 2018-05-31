@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+using namespace std;
+void Reverse(string& s, int begin, int end)
+{	
+   while (begin<end)	
+   {		
+     int tmp = s[begin];
+     s[begin] = s[end];	
+     s[end] = tmp;
+     ++begin;
+     --end;	
+   }
+}//整体
+//整体  部分
+void ReverseSentence(string& s)
+{
+   if(s.size() <= 0)
+   {
+     return ;
+   }	
+   Reverse(s,0, s.size()-1);
+   size_t i = 0;
+   size_t begin = i;
+   while(i<s.size())
+   {
+      if (isspace(s[i]))
+      {
+         Reserse(s,begin,i-1);
+         begin = i+1;
+      }
+      ++i;
+   }	
+   Reserve(s,begin, i-1);
+}
+int main()
+{
+    string s;
+    while (getline(cin ,s))
+    {
+        ReverseSentence(s);
+        cout<<s<<endl;
+    }
+    return 0;
+ }
