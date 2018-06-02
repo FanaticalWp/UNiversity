@@ -1,0 +1,31 @@
+class Solution
+{
+public:
+  bool Find(int target, vector<vector<int>> array)
+    {
+      if (array[0].empty())
+        {
+          return false;
+        }
+        int row = 0;
+        int col = array[0].size()-1;
+        while (row <= array.size() - 1 && col >= 0)
+        {
+           if (array[row][col] == target)
+            {
+               return true;
+            }
+            if (array[row][col] < target)
+            {
+                row++;
+                continue;
+            }
+            if (array[row][col] > target)
+            {
+                 col--;
+            }
+        }
+           return false;
+    }
+}
+ 
